@@ -5,5 +5,3 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # - Package Imports -
 # ----------------------------------------------------------------------------------------------------------------------
-from AthenaDocumentor.functions.documentors.documentor_function import documentor_function
-from AthenaDocumentor.functions.documentors.documentor_class import documentor_class
