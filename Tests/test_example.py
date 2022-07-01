@@ -4,6 +4,7 @@
 # General Packages
 from __future__ import annotations
 import unittest
+import json
 
 # Custom Library
 import AthenaDocumentor.functions.parser
@@ -32,4 +33,10 @@ class TestDocumentor(unittest.TestCase):
             AthenaDocumentor.functions.parser.parse_single_object(strange_object)
 
     def test_everything(self):
-        print(AthenaDocumentor.functions.parser.parse(AthenaDocumentor, to_dict=True))
+        with open("dump.json", "w+") as file:
+            file.write(
+                json.dumps(
+                    AthenaDocumentor.functions.parser.parse(AthenaDocumentor, to_dict=True),
+                    indent=4
+                )
+            )

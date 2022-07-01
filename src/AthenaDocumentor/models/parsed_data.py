@@ -5,12 +5,14 @@
 from __future__ import annotations
 from dataclasses import dataclass
 import inspect
-from typing import Any
 from types import ModuleType
+import typing
 
 # Custom Library
 
 # Custom Packages
+from AthenaDocumentor.functions.type_finder import find_type
+from AthenaDocumentor.data.types import Types
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
@@ -22,6 +24,7 @@ class ParsedObject:
     parent_module:ModuleType
     signature:inspect.Signature
     methods:list[ParsedObject]
+    type:Types
 
     def __init__(self, obj):
         if not (inspect.isclass(obj) or inspect.isfunction(obj) or inspect.ismodule(obj)):
@@ -41,8 +44,11 @@ class ParsedObject:
             if (inspect.ismethod(obj_method) or inspect.isfunction(obj_method))
         ]
 
+        self.type = find_type(obj)
+
     def to_dict(self) -> dict:
         return {
+            "type":self.type.value,
             "name":self.name,
             "doc":self.doc,
             "parent_module":self.parent_module.__name__,
