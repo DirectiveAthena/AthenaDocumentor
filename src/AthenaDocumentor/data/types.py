@@ -1,13 +1,21 @@
 # ----------------------------------------------------------------------------------------------------------------------
-# - All -
-# ----------------------------------------------------------------------------------------------------------------------
-__all__ = [
-    "Parser", "Output", "OutputMarkdown"
-]
-
-# ----------------------------------------------------------------------------------------------------------------------
 # - Package Imports -
 # ----------------------------------------------------------------------------------------------------------------------
-from AthenaDocumentor.models.parser import Parser
-from AthenaDocumentor.models.outputs.output import Output
-from AthenaDocumentor.models.outputs.output_markdown import OutputMarkdown
+# General Packages
+from __future__ import annotations
+from enum import Enum
+# Custom Library
+
+# Custom Packages
+
+# ----------------------------------------------------------------------------------------------------------------------
+# - Code -
+# ----------------------------------------------------------------------------------------------------------------------
+class Types(Enum):
+    fnc= "#func"
+    cls= "#class"
+    unknown="**!*UNKNOWN*!**"
+    cls_mth = "#classmethod"
+    stat_mth = "#staticmethod"
+    module="#module"
+    mth="#method"

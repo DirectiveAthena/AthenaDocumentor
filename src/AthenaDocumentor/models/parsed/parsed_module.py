@@ -1,13 +1,21 @@
 # ----------------------------------------------------------------------------------------------------------------------
-# - All -
-# ----------------------------------------------------------------------------------------------------------------------
-__all__ = [
-    "Parser", "Output", "OutputMarkdown"
-]
-
-# ----------------------------------------------------------------------------------------------------------------------
 # - Package Imports -
 # ----------------------------------------------------------------------------------------------------------------------
-from AthenaDocumentor.models.parser import Parser
-from AthenaDocumentor.models.outputs.output import Output
-from AthenaDocumentor.models.outputs.output_markdown import OutputMarkdown
+# General Packages
+from __future__ import annotations
+from dataclasses import dataclass
+
+# Custom Library
+
+# Custom Packages
+from AthenaDocumentor.models.parsed.parsed import Parsed
+from AthenaDocumentor.data.types import Types
+
+# ----------------------------------------------------------------------------------------------------------------------
+# - Code -
+# ----------------------------------------------------------------------------------------------------------------------
+@dataclass(init=False, eq=False)
+class ParsedModule(Parsed):
+    @property
+    def type(self):
+        return Types.module
