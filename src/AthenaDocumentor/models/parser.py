@@ -7,6 +7,8 @@ from dataclasses import dataclass, field
 from typing import Any
 import copy
 import json
+import types
+import inspect
 
 # Custom Library
 
@@ -14,8 +16,6 @@ import json
 from AthenaDocumentor.models.outputs.output import Output
 from AthenaDocumentor.models.outputs.output_markdown import OutputMarkdown
 from AthenaDocumentor.models.parsed import Parsed, ParsedModule, ParsedMethod,ParsedClass,ParsedFunction
-
-from AthenaDocumentor.functions.parsing import parser
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -26,22 +26,22 @@ class Parser:
     """
     Object to control the correct handling of parsing through a Python package
     """
-    root_module:Any
+    root_module:types.ModuleType
     markdown_structure:type[Output]=field(default=OutputMarkdown)
     parse_items_with_underscore:bool=True
 
     # non init
-    parsed_items:dict[str:list[Parsed]]=field(init=False, default_factory=dict)
+    parsed_items:dict[str:list[Parsed]]=field(init=False)
     handled_components:set=field(init=False, default_factory=set)
-    root_module_imports:list=field(init=False, default_factory=list)
+    allowed_roots_imports:list=field(init=False)
 
     def __post_init__(self):
-        self.root_module_imports = [
+        self.allowed_roots_imports = [
             getattr(self.root_module, i).__name__
             for i in dir(self.root_module)
             if not i.startswith("__")
         ]
-        self.parsed_items[self.root_module.__name__] = []
+        self.parsed_items = {self.root_module.__name__:[]}
 
 
     def parse(self) -> Parser:
@@ -53,35 +53,39 @@ class Parser:
         return self
 
     def _parse_recursive(self, module_to_parse:Any):
-        for component in dir(module_to_parse): #type:str
-            # skip special dunder components in a module
-            if component.startswith("__") or component in self.handled_components:
-                continue
+        for component in (c for c in dir(module_to_parse) if c not in self.handled_components): #type:str
             # store component string to skip the same name in the future
             self.handled_components.add(component)
 
-            # parse through the object and store correctly
-
-            if (parsed_attr := parser(getattr(module_to_parse, component))) is None: #type:Parsed
-                # continue if no viable parsed attr could have been found
-                continue
-            elif isinstance(parsed_attr, ParsedModule):
-                self._parse_recursive(parsed_attr.obj)
-                continue
-            elif (
-                parsed_attr.obj_name.startswith("_")
-                and not self.parse_items_with_underscore
-            ) or parsed_attr.parent_module is None:
+            # skip special dunder components in a module
+            if component.startswith("__") \
+            or (component.startswith("_") and not self.parse_items_with_underscore):
                 continue
 
-            # get that actual attribute object
-            #   This is needed for the actual storage of component information
-            if not parsed_attr.module_name.startswith(self.root_module.__name__):
+            # retrieve actual objects
+            obj = getattr(module_to_parse, component)
+            parent_module = inspect.getmodule(obj)
+
+            # check objects
+            if inspect.isbuiltin(obj) \
+            or parent_module is None \
+            or not parent_module.__name__.startswith(self.root_module.__name__):
+                continue
+            elif inspect.isclass(obj):
+                parsed_attr = ParsedClass(obj,parent_module)
+            elif inspect.isfunction(obj):
+                parsed_attr = ParsedFunction(obj,parent_module)
+            elif inspect.ismethod(obj):
+                parsed_attr = ParsedMethod(obj,parent_module)
+            elif inspect.ismodule(obj):
+                self._parse_recursive(ParsedModule(obj, parent_module).obj)
+                continue
+            else:
                 continue
 
             # fixes the issue that root imported objects/classes/etc... weren't displayed as such
-            # print(parsed_attr.obj_name, self.root_module_imports)
-            if parsed_attr.obj_name in self.root_module_imports:
+            # print(parsed_attr.obj_name, self.allowed_roots_imports)
+            if parsed_attr.obj_name in self.allowed_roots_imports:
                 parsed_attr.parent_module = self.root_module
                 self.parsed_items[self.root_module.__name__].append(parsed_attr)
             # make sure the module name is in the dictionary else it will fail

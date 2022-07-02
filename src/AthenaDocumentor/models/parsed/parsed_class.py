@@ -22,15 +22,15 @@ class ParsedClass(Parsed):
     signature: inspect.Signature|None
     methods: list[ParsedMethod]
 
-    def __init__(self, obj):
-        super(ParsedClass, self).__init__(obj)
+    def __init__(self, obj, parent_module):
+        super(ParsedClass, self).__init__(obj,parent_module)
         try:
             self.signature = inspect.signature(obj)
         except ValueError:
             self.signature = None
 
         self.methods = [
-            ParsedMethod(obj_method)
+            ParsedMethod(obj_method, parent_module)
             for name, obj_method in obj.__dict__.items()
             if isinstance(obj_method, classmethod|types.FunctionType|type)
         ]

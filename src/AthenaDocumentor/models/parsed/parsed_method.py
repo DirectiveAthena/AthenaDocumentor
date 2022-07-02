@@ -19,18 +19,20 @@ from AthenaDocumentor.data.types import Types
 class ParsedMethod(Parsed):
     signature: inspect.Signature|None
 
-    def __init__(self, obj):
-        super(ParsedMethod, self).__init__(obj)
+    def __init__(self, obj, parent_module):
+        self.obj = obj
+        self.parent_module = parent_module
+        self.module_name = parent_module.__name__
+        self.doc = inspect.getdoc(obj)
         try:
             if isinstance(obj, classmethod|staticmethod):
+                self.obj_name = obj.__func__.__name__
                 self.signature = inspect.signature(obj.__func__)
             else:
+                self.obj_name = obj.__name__
                 self.signature = inspect.signature(obj)
         except ValueError:
             self.signature = None
-        except AttributeError:
-            print(obj)
-            raise
 
     @property
     def type(self):

@@ -25,11 +25,11 @@ class Parsed(ABC):
     module_name:str
     doc:str
 
-    def __init__(self, obj):
+    def __init__(self, obj, parent_module):
         self.obj = obj
         self.obj_name = obj.__name__
-        self.parent_module = inspect.getmodule(obj)
-        self.module_name = inspect.getmodule(obj).__name__
+        self.parent_module = parent_module
+        self.module_name =parent_module.__name__
         self.doc = inspect.getdoc(obj)
 
     @property

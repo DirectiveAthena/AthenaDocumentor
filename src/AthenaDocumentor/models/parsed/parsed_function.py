@@ -19,8 +19,8 @@ from AthenaDocumentor.data.types import Types
 class ParsedFunction(Parsed):
     signature: inspect.Signature|None
 
-    def __init__(self, obj):
-        super(ParsedFunction, self).__init__(obj)
+    def __init__(self, obj,parent_module):
+        super(ParsedFunction, self).__init__(obj, parent_module)
         try:
             self.signature = inspect.signature(obj)
         except ValueError:
