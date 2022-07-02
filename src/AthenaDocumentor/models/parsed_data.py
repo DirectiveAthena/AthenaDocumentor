@@ -20,9 +20,10 @@ from AthenaDocumentor.data.types import Types
 @dataclass(slots=True, init=False)
 class ParsedObject:
     name:str
+    module_name:str
     doc:str
     parent_module:ModuleType
-    signature:inspect.Signature
+    signature:inspect.Signature|None
     methods:list[ParsedObject]
     type:Types
 
@@ -36,7 +37,11 @@ class ParsedObject:
             doc = inspect.cleandoc(doc)
         self.doc = doc
         self.parent_module = inspect.getmodule(obj)
-        self.signature = inspect.signature(obj)
+        try:
+            self.signature = inspect.signature(obj)
+        except ValueError:
+            self.signature = None
+        self.module_name = inspect.getmodule(obj).__name__
 
         self.methods = [
             ParsedObject(obj_method)

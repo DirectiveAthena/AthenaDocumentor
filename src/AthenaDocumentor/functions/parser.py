@@ -14,9 +14,6 @@ from AthenaDocumentor.models.parsed_data import ParsedObject
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
-def parse_single_object(obj:object|type) -> ParsedObject:
-    return ParsedObject(obj)
-
 memory = set()
 root_module:ModuleType|None=None
 fully_parsed:dict = {}
@@ -37,15 +34,15 @@ def _parse_recursive(module_, *, to_dict:bool=False):
             _parse_recursive(attr, to_dict=to_dict)
 
         elif inspect.isclass(attr) or  inspect.isfunction(attr) or inspect.ismethod(attr):
-            attr_name = inspect.getmodule(attr).__name__
-            if attr_name.startswith(root_module.__name__):
-                parsed_attr = parse_single_object(attr)
-                if attr_name in fully_parsed:
-                    fully_parsed[attr_name].append(parsed_attr.to_dict() if to_dict else parsed_attr)
-                else:
-                    fully_parsed[attr_name] = [parsed_attr.to_dict() if to_dict else parsed_attr]
+            parsed_attr = ParsedObject(attr)
 
-def parse(module_, *, to_dict:bool=False) -> fully_parsed:
+            if parsed_attr.module_name.startswith(root_module.__name__):
+                if parsed_attr.module_name in fully_parsed:
+                    fully_parsed[parsed_attr.module_name].append(parsed_attr.to_dict() if to_dict else parsed_attr)
+                else:
+                    fully_parsed[parsed_attr.module_name] = [parsed_attr.to_dict() if to_dict else parsed_attr]
+
+def parse_all(module_, *, to_dict:bool=False) -> fully_parsed:
     global root_module
     global fully_parsed
     global memory

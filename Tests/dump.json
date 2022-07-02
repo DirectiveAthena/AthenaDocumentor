@@ -89,10 +89,10 @@
         },
         {
             "type": "#func",
-            "name": "parse_single_object",
+            "name": "parse_all",
             "doc": null,
             "parent_module": "AthenaDocumentor.functions.parser",
-            "signature": "(obj: 'object | type') -> 'ParsedObject'",
+            "signature": "(module_, *, to_dict: 'bool' = False) -> 'fully_parsed'",
             "methods": []
         }
     ],
