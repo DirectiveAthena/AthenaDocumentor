@@ -102,6 +102,15 @@ class Parser:
                     indent=4
                 )
             )
+    def output_to_json_string(self) -> str:
+        """
+        Output the 'parsed_items' dictionary to a json formatted string.
+        This method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`
+        """
+        return json.dumps(
+            self.output_to_dict(flat=True),
+            indent=4
+        )
 
     def _output_to_markdown(self):
         for module_name, module_list in self.parsed_items.items():  # type: str, list[ParsedObject]

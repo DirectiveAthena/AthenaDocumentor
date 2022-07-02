@@ -99,6 +99,14 @@
                 },
                 {
                     "type": "#func",
+                    "name": "output_to_json_string",
+                    "doc": "Output the 'parsed_items' dictionary to a json formatted string.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self) -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
                     "name": "_output_to_markdown",
                     "doc": null,
                     "parent_module": "AthenaDocumentor.models.parser",

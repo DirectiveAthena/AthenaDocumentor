@@ -15,11 +15,19 @@ from Tests.support_code import Person, PERSON, random_function, RANDOM_FUNCTION,
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
 class TestParser(unittest.TestCase):
-    def test_output_support_code(self):
+    def test_output_markdown(self):
         with open("../exports/dump.md", "r") as file:
             self.assertEqual(
                 file.read(),
                 AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
                     .parse()
                     .output_to_markdown_string()
+            )
+    def test_output_json(self):
+        with open("../exports/dump.json", "r") as file:
+            self.assertEqual(
+                file.read(),
+                AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
+                    .parse()
+                    .output_to_json_string()
             )
