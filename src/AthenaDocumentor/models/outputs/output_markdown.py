@@ -77,7 +77,7 @@ class OutputMarkdown(Output):
             )
         )
         footer = cls.format_footer(parsed_object)
-        return f"{header}\n\n{cls.format_documentation(parsed_object)}\n\n{methods[:-4]}{footer}"
+        return f"{header}\n\n{cls.format_documentation(parsed_object)}\n\n{methods}{footer}"
 
     @classmethod
     def structure_method(cls, parsed_object: ParsedObject) -> str:
