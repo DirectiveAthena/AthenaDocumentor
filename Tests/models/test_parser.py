@@ -7,7 +7,6 @@ import unittest
 
 # Custom Library
 import AthenaDocumentor.models.parser
-import AthenaDocumentor.models.parsed_data
 
 # Custom Packages
 
@@ -16,6 +15,7 @@ import AthenaDocumentor.models.parsed_data
 # ----------------------------------------------------------------------------------------------------------------------
 class TestParser(unittest.TestCase):
     def test_output_markdown(self):
+        self.maxDiff = None
         with open("../exports/dump.md", "r") as file:
             self.assertEqual(
                 file.read(),

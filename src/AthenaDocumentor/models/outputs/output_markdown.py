@@ -10,14 +10,14 @@ from __future__ import annotations
 from AthenaDocumentor.models.outputs.output import Output
 
 import AthenaDocumentor.functions.markdown_string_manipulations as msm
-from AthenaDocumentor.models.parsed_data import ParsedObject
+from AthenaDocumentor.models.parsed import Parsed, ParsedMethod,ParsedClass,ParsedFunction
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
 class OutputMarkdown(Output):
     """
-    The OutputMarkdown supports the `Parser` in formatting `ParsedObject` objects to the defined format.
+    The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to the defined format.
     """
     indent:int = 4
 
@@ -28,26 +28,26 @@ class OutputMarkdown(Output):
     # - Formatting text snippets -
     # ----------------------------------------------------------------------------------------------------------------------
     @classmethod
-    def format_documentation(cls,parsed_object:ParsedObject) -> str:
+    def format_documentation(cls,parsed_object:Parsed) -> str:
         if parsed_object.doc is None or not parsed_object.doc:
             return cls.missing_documentation
         return parsed_object.doc
 
     @classmethod
-    def format_type(cls, parsed_object:ParsedObject) -> str:
+    def format_type(cls, parsed_object:Parsed) -> str:
         return parsed_object.type.value
     @classmethod
-    def format_module_name(cls, parsed_object:ParsedObject) -> str:
+    def format_module_name(cls, parsed_object:Parsed) -> str:
         return f"<small>{parsed_object.parent_module.__name__}.</small>"
     @classmethod
-    def format_object_name(cls, parsed_object:ParsedObject) -> str:
-        return f"**{parsed_object.name}**"
+    def format_object_name(cls, parsed_object:Parsed) -> str:
+        return f"**{parsed_object.obj_name}**"
     @classmethod
-    def format_signature(cls, parsed_object:ParsedObject) -> str:
+    def format_signature(cls, parsed_object:ParsedFunction|ParsedMethod|ParsedClass) -> str:
         return str(parsed_object.signature).replace("'", "")
 
     @classmethod
-    def format_header(cls, parsed_object: ParsedObject) -> str:
+    def format_header(cls, parsed_object: ParsedFunction|ParsedMethod|ParsedClass) -> str:
         type_:str = cls.format_type(parsed_object)
         module_name:str = cls.format_module_name(parsed_object)
         object_name:str = cls.format_object_name(parsed_object)
@@ -55,20 +55,20 @@ class OutputMarkdown(Output):
         return f"{type_} {module_name}{object_name}{signature}"
 
     @classmethod
-    def format_footer(cls, parsed_object: ParsedObject) -> str:
+    def format_footer(cls, parsed_object: Parsed) -> str:
         return cls.default_footer
 
     # ----------------------------------------------------------------------------------------------------------------------
     # - Full structures -
     # ----------------------------------------------------------------------------------------------------------------------
     @classmethod
-    def structure_function(cls, parsed_object:ParsedObject) -> str:
+    def structure_function(cls, parsed_object:ParsedFunction|ParsedMethod) -> str:
         header = cls.format_header(parsed_object)
         footer = cls.format_footer(parsed_object)
         return f"{header}\n\n{cls.format_documentation(parsed_object)}{footer}"
 
     @classmethod
-    def structure_class(cls,parsed_object: ParsedObject) -> str:
+    def structure_class(cls,parsed_object: ParsedClass) -> str:
         header = cls.format_header(parsed_object)
         methods:str = msm.remove_empty_prefix(
             "\n\n".join(
@@ -80,7 +80,7 @@ class OutputMarkdown(Output):
         return f"{header}\n\n{cls.format_documentation(parsed_object)}\n\n{methods}{footer}"
 
     @classmethod
-    def structure_method(cls, parsed_object: ParsedObject) -> str:
+    def structure_method(cls, parsed_object: ParsedFunction|ParsedMethod) -> str:
         object_name:str = cls.format_object_name(parsed_object)
         signature:str = cls.format_signature(parsed_object)
         documentation = cls.format_documentation(parsed_object).replace("\n\n", "\n")

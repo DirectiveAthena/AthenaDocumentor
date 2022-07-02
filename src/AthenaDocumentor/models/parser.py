@@ -7,15 +7,16 @@ from dataclasses import dataclass, field
 from typing import Any
 import copy
 import json
-import inspect
 
 # Custom Library
 
 # Custom Packages
-from AthenaDocumentor.models.parsed_data import ParsedObject
 from AthenaDocumentor.models.outputs.output import Output
 from AthenaDocumentor.models.outputs.output_markdown import OutputMarkdown
-from AthenaDocumentor.data.types import Types
+from AthenaDocumentor.models.parsed import Parsed, ParsedModule, ParsedMethod,ParsedClass,ParsedFunction
+
+from AthenaDocumentor.functions.parsing import parser
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
@@ -30,18 +31,24 @@ class Parser:
     parse_items_with_underscore:bool=True
 
     # non init
-    parsed_items:dict[str:list[ParsedObject]]=field(init=False, default_factory=dict)
+    parsed_items:dict[str:list[Parsed]]=field(init=False, default_factory=dict)
     handled_components:set=field(init=False, default_factory=set)
     root_module_imports:list=field(init=False, default_factory=list)
+
+    def __post_init__(self):
+        self.root_module_imports = [
+            getattr(self.root_module, i).__name__
+            for i in dir(self.root_module)
+            if not i.startswith("__")
+        ]
+        self.parsed_items[self.root_module.__name__] = []
+
 
     def parse(self) -> Parser:
         """
         Main method of the Parser object.
         Running this will start the pared and populate the 'parsed_items' slot of the Parser object
         """
-        self.root_module_imports = [i for i in dir(self.root_module) if not i.startswith("__")]
-        self.parsed_items[self.root_module.__name__] = []
-
         self._parse_recursive(self.root_module)
         return self
 
@@ -53,31 +60,39 @@ class Parser:
             # store component string to skip the same name in the future
             self.handled_components.add(component)
 
+            # parse through the object and store correctly
+
+            if (parsed_attr := parser(getattr(module_to_parse, component))) is None: #type:Parsed
+                # continue if no viable parsed attr could have been found
+                continue
+            elif isinstance(parsed_attr, ParsedModule):
+                self._parse_recursive(parsed_attr.obj)
+                continue
+            elif (
+                parsed_attr.obj_name.startswith("_")
+                and not self.parse_items_with_underscore
+            ) or parsed_attr.parent_module is None:
+                continue
+
             # get that actual attribute object
             #   This is needed for the actual storage of component information
-            if inspect.ismodule(attr := getattr(module_to_parse, component)):
-                self._parse_recursive(attr)
+            if not parsed_attr.module_name.startswith(self.root_module.__name__):
+                continue
 
-            elif inspect.isclass(attr) or inspect.isfunction(attr) or inspect.ismethod(attr):
-                # if the setting is disabled, don't store those who start with an underscore
-                if (not self.parse_items_with_underscore and component.startswith("_")) or inspect.getmodule(attr) is None:
-                    continue
-                # don't store components which are not a native part of the root module
-                parsed_attr = ParsedObject(attr)
-                if not parsed_attr.module_name.startswith(self.root_module.__name__):
-                    continue
+            # fixes the issue that root imported objects/classes/etc... weren't displayed as such
+            # print(parsed_attr.obj_name, self.root_module_imports)
+            if parsed_attr.obj_name in self.root_module_imports:
+                parsed_attr.parent_module = self.root_module
+                self.parsed_items[self.root_module.__name__].append(parsed_attr)
+            # make sure the module name is in the dictionary else it will fail
+            elif parsed_attr.module_name not in self.parsed_items:
+                self.parsed_items[parsed_attr.module_name] = [parsed_attr]
+            else:
+                self.parsed_items[parsed_attr.module_name].append(parsed_attr)
 
-                # make sure the module name is in the dictionary else it will fail
-                elif parsed_attr.module_name not in self.parsed_items:
-                    self.parsed_items[parsed_attr.module_name] = []
-
-                # fixes the issue that root imported objects/classes/etc... weren't displayed as such
-                if component in self.root_module_imports:
-                    parsed_attr.parent_module = self.root_module
-                    self.parsed_items[self.root_module.__name__].append(parsed_attr)
-                else:
-                    self.parsed_items[parsed_attr.module_name].append(parsed_attr)
-
+    # ------------------------------------------------------------------------------------------------------------------
+    # - Outputs -
+    # ------------------------------------------------------------------------------------------------------------------
     def output_to_dict(self, *, flat:bool=False) -> dict[str:list[dict]]:
         """
         Output the 'parsed_items' dictionary as is, or with custom parameters.
@@ -114,17 +129,21 @@ class Parser:
         )
 
     def _output_to_markdown(self):
-        for module_name, module_list in self.parsed_items.items():  # type: str, list[ParsedObject]
+        for module_name, module_list in self.parsed_items.items():  # type: str, list[Parsed]
             for module in module_list:
                 match module:
-                    case ParsedObject(type=Types.cls):
+                    case ParsedClass():
                         yield self.markdown_structure.structure_class(module)
-                    case ParsedObject(type=Types.fnc):
+                    case ParsedFunction():
                         yield self.markdown_structure.structure_function(module)
-                    case ParsedObject(type=Types.stat_mth):
+                    case ParsedMethod():
                         yield self.markdown_structure.structure_function(module)
-                    case ParsedObject(type=Types.cls_mth):
-                        yield self.markdown_structure.structure_function(module)
+                    case ParsedModule():
+                        continue
+                    case _:
+                        raise TypeError(module)
+                    # case Parse:
+                    #     yield self.markdown_structure.structure_function(module)
 
     def output_to_markdown_file(self, *filepath:str):
         """

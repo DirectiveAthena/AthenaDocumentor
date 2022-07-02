@@ -3,19 +3,24 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # General Packages
 from __future__ import annotations
-from enum import Enum
+import inspect
+
 # Custom Library
 
 # Custom Packages
+from AthenaDocumentor.models.parsed import Parsed, ParsedModule, ParsedMethod,ParsedClass,ParsedFunction
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
-class Types(Enum):
-    fnc= "#func"
-    cls= "#class"
-    unknown="**!*UNKNOWN*!**"
-    cls_mth = "#classmethod"
-    stat_mth = "#staticmethod"
-    module="#module"
-    mth="#method"
+def parser(obj:object|type) -> Parsed|None:
+    if inspect.isbuiltin(obj):
+        return
+    if inspect.isclass(obj):
+        return ParsedClass(obj)
+    elif inspect.isfunction(obj):
+        return ParsedFunction(obj)
+    elif inspect.ismethod(obj):
+        return ParsedMethod(obj)
+    elif inspect.ismodule(obj):
+        return ParsedModule(obj)

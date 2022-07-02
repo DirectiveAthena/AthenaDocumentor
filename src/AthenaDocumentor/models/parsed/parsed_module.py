@@ -3,19 +3,19 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # General Packages
 from __future__ import annotations
-from enum import Enum
+from dataclasses import dataclass
+
 # Custom Library
 
 # Custom Packages
+from AthenaDocumentor.models.parsed.parsed import Parsed
+from AthenaDocumentor.data.types import Types
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
-class Types(Enum):
-    fnc= "#func"
-    cls= "#class"
-    unknown="**!*UNKNOWN*!**"
-    cls_mth = "#classmethod"
-    stat_mth = "#staticmethod"
-    module="#module"
-    mth="#method"
+@dataclass(init=False, eq=False)
+class ParsedModule(Parsed):
+    @property
+    def type(self):
+        return Types.module

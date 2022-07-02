@@ -35,38 +35,32 @@ class Person:
         """Clones the current Person into a new object"""
         return Person(self.name, self.age, self.health)
 
-PERSON = {
-    'doc': 'A person class for a game',
-    'methods': [{'doc': 'Initialize self.  See help(type(self)) for accurate '
+PERSON ={'doc': 'A person class for a game',
+ 'methods': [{'doc': 'Initialize self.  See help(type(self)) for accurate '
                      'signature.',
-              'methods': [],
               'name': '__init__',
               'parent_module': 'Tests.support_code',
               'signature': "(self, name: 'str', age: 'int', health=100)",
-              'type': '#func'},
+              'type': '#method'},
              {'doc': 'The function affects the health of the Person object',
-              'methods': [],
               'name': 'affect_health',
               'parent_module': 'Tests.support_code',
               'signature': "(self, amount: 'int')",
-              'type': '#func'},
+              'type': '#method'},
              {'doc': 'Sets the health of a Person to 0',
-              'methods': [],
               'name': 'kill',
               'parent_module': 'Tests.support_code',
               'signature': '(self)',
-              'type': '#func'},
+              'type': '#method'},
              {'doc': 'Clones the current Person into a new object',
-              'methods': [],
               'name': 'clone',
               'parent_module': 'Tests.support_code',
               'signature': "(self) -> 'Person'",
-              'type': '#func'}],
-     'name': 'Person',
-     'parent_module': 'Tests.support_code',
-     'signature': "(name: 'str', age: 'int', health=100)",
-     'type': '#class'
-}
+              'type': '#method'}],
+ 'name': 'Person',
+ 'parent_module': 'Tests.support_code',
+ 'signature': "(name: 'str', age: 'int', health=100)",
+ 'type': '#class'}
 # ----------------------------------------------------------------------------------------------------------------------
 # - Function -
 # ----------------------------------------------------------------------------------------------------------------------
@@ -74,14 +68,11 @@ def random_function(a:int, b:int) -> int:
     """this is quite the random function"""
     return a+b
 
-RANDOM_FUNCTION = {
-    'doc': 'this is quite the random function',
-     'methods': [],
-     'name': 'random_function',
-     'parent_module': 'Tests.support_code',
-     'signature': "(a: 'int', b: 'int') -> 'int'",
-     'type': '#func'
-}
+RANDOM_FUNCTION = {'doc': 'this is quite the random function',
+ 'name': 'random_function',
+ 'parent_module': 'Tests.support_code',
+ 'signature': "(a: 'int', b: 'int') -> 'int'",
+ 'type': '#func'}
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - object -
