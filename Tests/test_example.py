@@ -33,9 +33,16 @@ class TestDocumentor(unittest.TestCase):
         with self.assertRaises(TypeError):
             AthenaDocumentor.models.parsed_data.ParsedObject(strange_object)
 
-    def test_everything(self):
-        parser = (
+    def test_output_json(self):
+        (
             AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
                 .parse()
                 .output_to_json_file(filepath="dump.json")
+        )
+
+    def test_output_markdown(self):
+        (
+            AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
+                .parse()
+                .output_to_markdown_file(filepath="D:\Directive Athena\Programs\Veritas\Storage\Documentation\dump.md")
         )

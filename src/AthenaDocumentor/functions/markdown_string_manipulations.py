@@ -3,20 +3,29 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # General Packages
 from __future__ import annotations
-import inspect
 
 # Custom Library
 
 # Custom Packages
-from AthenaDocumentor.data.types import Types
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
-def find_type(obj) -> Types:
-    if inspect.isclass(obj):
-        return Types.cls
-    elif inspect.isfunction(obj) or inspect.ismethod(obj):
-        return Types.fnc
-    else:
-        return Types.unknown
+def indent_all_lines(text:str, indent:int) -> str:
+    """
+    Indents all lines in a string with a defined amount of indentation
+    """
+    indentation:str = " "*indent
+    text_indented = text.replace("\n", f"\n{indentation}")
+    return f"{indentation}{text_indented}"
+
+def quote_all_lines(text:str) -> str:
+    """
+    Places a quote prefix in front of all lines in a string
+    """
+    text_indented = text.replace("\n", f"\n> ")
+    return f"> {text_indented}"
+
+def remove_empty_prefix(text:str) -> str:
+    return text.replace("  ", "")
+

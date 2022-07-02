@@ -1,47 +1,18 @@
 {
-    "AthenaDocumentor.data.types": [
+    "AthenaDocumentor": [
         {
             "type": "#class",
-            "name": "Types",
-            "doc": "An enumeration.",
-            "parent_module": "AthenaDocumentor.data.types",
-            "signature": "(value, names=None, *, module=None, qualname=None, type=None, start=1)",
-            "methods": [
-                {
-                    "type": "#func",
-                    "name": "_generate_next_value_",
-                    "doc": "Generate the next value when not given.\n\nname: the name of the member\nstart: the initial start value or None\ncount: the number of existing members\nlast_value: the last value assigned or None",
-                    "parent_module": "enum",
-                    "signature": "(name, start, count, last_values)",
-                    "methods": []
-                },
-                {
-                    "type": "#func",
-                    "name": "__new__",
-                    "doc": "Create and return a new object.  See help(type) for accurate signature.",
-                    "parent_module": "enum",
-                    "signature": "(cls, value)",
-                    "methods": []
-                }
-            ]
-        }
-    ],
-    "AthenaDocumentor.functions.type_finder": [
-        {
-            "type": "#func",
-            "name": "find_type",
-            "doc": null,
-            "parent_module": "AthenaDocumentor.functions.type_finder",
-            "signature": "(obj) -> 'Types'",
+            "name": "MarkdownStructure",
+            "doc": "The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.",
+            "parent_module": "AthenaDocumentor",
+            "signature": "()",
             "methods": []
-        }
-    ],
-    "AthenaDocumentor.models.parsed_data": [
+        },
         {
             "type": "#class",
             "name": "ParsedObject",
             "doc": "ParsedObject(obj)",
-            "parent_module": "AthenaDocumentor.models.parsed_data",
+            "parent_module": "AthenaDocumentor",
             "signature": "(obj)",
             "methods": [
                 {
@@ -86,20 +57,18 @@
                     "methods": []
                 }
             ]
-        }
-    ],
-    "AthenaDocumentor.models.parser": [
+        },
         {
             "type": "#class",
             "name": "Parser",
-            "doc": "Object to control the correct handling of parsing through a Python package\n\nParameters:\n    - root_module: Define the base package it must parse through",
-            "parent_module": "AthenaDocumentor.models.parser",
-            "signature": "(*, root_module: 'Any') -> None",
+            "doc": "Object to control the correct handling of parsing through a Python package",
+            "parent_module": "AthenaDocumentor",
+            "signature": "(*, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>) -> None",
             "methods": [
                 {
                     "type": "#func",
                     "name": "parse",
-                    "doc": "Main method of the Parser object.\nRunning this will start the pared and populate the 'parsed_items' slot of the Parser object\n\nReturns:\n    self : Done for chaining methods",
+                    "doc": "Main method of the Parser object.\nRunning this will start the pared and populate the 'parsed_items' slot of the Parser object",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self) -> 'Parser'",
                     "methods": []
@@ -115,7 +84,7 @@
                 {
                     "type": "#func",
                     "name": "output_to_dict",
-                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.\n\nParameters:\n    - flat: Outputs the dictionary in base types only (string, integers, booleans, etc...)\n\nReturns:\n    dict",
+                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, *, flat: 'bool' = False) -> 'dict[str:list[dict]]'",
                     "methods": []
@@ -123,7 +92,15 @@
                 {
                     "type": "#func",
                     "name": "output_to_json_file",
-                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`\n\nParameters:\n    - filepath: Defines the output file location",
+                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self, filepath: 'str')",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "output_to_markdown_file",
+                    "doc": "Output the 'parsed_items' to a structured markdown file.",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, filepath: 'str')",
                     "methods": []
@@ -133,7 +110,7 @@
                     "name": "__init__",
                     "doc": "Initialize self.  See help(type(self)) for accurate signature.",
                     "parent_module": "AthenaDocumentor.models.parser",
-                    "signature": "(self, *, root_module: 'Any') -> None",
+                    "signature": "(self, *, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>) -> None",
                     "methods": []
                 },
                 {
@@ -154,6 +131,72 @@
                     ]
                 }
             ]
+        }
+    ],
+    "AthenaDocumentor.models.markdown_structure": [],
+    "AthenaDocumentor.models.parsed_data": [],
+    "AthenaDocumentor.models.parser": [],
+    "AthenaDocumentor.data.types": [
+        {
+            "type": "#class",
+            "name": "Types",
+            "doc": "An enumeration.",
+            "parent_module": "AthenaDocumentor.data.types",
+            "signature": "(value, names=None, *, module=None, qualname=None, type=None, start=1)",
+            "methods": [
+                {
+                    "type": "#func",
+                    "name": "_generate_next_value_",
+                    "doc": "Generate the next value when not given.\n\nname: the name of the member\nstart: the initial start value or None\ncount: the number of existing members\nlast_value: the last value assigned or None",
+                    "parent_module": "enum",
+                    "signature": "(name, start, count, last_values)",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "__new__",
+                    "doc": "Create and return a new object.  See help(type) for accurate signature.",
+                    "parent_module": "enum",
+                    "signature": "(cls, value)",
+                    "methods": []
+                }
+            ]
+        }
+    ],
+    "AthenaDocumentor.functions.markdown_string_manipulations": [
+        {
+            "type": "#func",
+            "name": "indent_all_lines",
+            "doc": "Indents all lines in a string with a defined amount of indentation",
+            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
+            "signature": "(text: 'str', indent: 'int') -> 'str'",
+            "methods": []
+        },
+        {
+            "type": "#func",
+            "name": "quote_all_lines",
+            "doc": "Places a quote prefix in front of all lines in a string",
+            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
+            "signature": "(text: 'str') -> 'str'",
+            "methods": []
+        },
+        {
+            "type": "#func",
+            "name": "remove_empty_prefix",
+            "doc": null,
+            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
+            "signature": "(text: 'str') -> 'str'",
+            "methods": []
+        }
+    ],
+    "AthenaDocumentor.functions.type_finder": [
+        {
+            "type": "#func",
+            "name": "find_type",
+            "doc": null,
+            "parent_module": "AthenaDocumentor.functions.type_finder",
+            "signature": "(obj) -> 'Types'",
+            "methods": []
         }
     ]
 }

@@ -12,6 +12,6 @@ from enum import Enum
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
 class Types(Enum):
-    function="#func"
-    class_="#class"
-    unknown=""
+    fnc= "#func"
+    cls= "#class"
+    unknown="**!*UNKNOWN*!**"
