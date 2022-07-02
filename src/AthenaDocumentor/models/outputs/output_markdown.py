@@ -3,6 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # General Packages
 from __future__ import annotations
+import inspect
 
 # Custom Library
 
@@ -29,9 +30,13 @@ class OutputMarkdown(Output):
     # ----------------------------------------------------------------------------------------------------------------------
     @classmethod
     def format_documentation(cls,parsed_object:Parsed) -> str:
-        if parsed_object.doc is None or not parsed_object.doc:
+        if isinstance(parsed_object.obj, classmethod|staticmethod):
+            doc = inspect.getdoc(parsed_object.obj.__func__)
+        else:
+            doc = inspect.getdoc(parsed_object.obj)
+        if doc is None or not doc:
             return cls.missing_documentation
-        return parsed_object.doc
+        return doc
 
     @classmethod
     def format_type(cls, parsed_object:Parsed) -> str:

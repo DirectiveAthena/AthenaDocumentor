@@ -23,14 +23,12 @@ class Parsed(ABC):
     obj_name:str
     parent_module:ModuleType|None
     module_name:str
-    doc:str
 
     def __init__(self, obj, parent_module):
         self.obj = obj
         self.obj_name = obj.__name__
         self.parent_module = parent_module
         self.module_name =parent_module.__name__
-        self.doc = inspect.getdoc(obj)
 
     @property
     @abstractmethod
@@ -41,6 +39,6 @@ class Parsed(ABC):
         return {
             "type":self.type.value,
             "name":self.obj_name,
-            "doc":self.doc,
+            "doc":inspect.getdoc(self.obj),
             "parent_module":self.parent_module.__name__
         }

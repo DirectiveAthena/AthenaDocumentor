@@ -23,7 +23,6 @@ class ParsedMethod(Parsed):
         self.obj = obj
         self.parent_module = parent_module
         self.module_name = parent_module.__name__
-        self.doc = inspect.getdoc(obj)
         try:
             if isinstance(obj, classmethod|staticmethod):
                 self.obj_name = obj.__func__.__name__
