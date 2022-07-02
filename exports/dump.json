@@ -63,7 +63,7 @@
             "name": "Parser",
             "doc": "Object to control the correct handling of parsing through a Python package",
             "parent_module": "AthenaDocumentor",
-            "signature": "(*, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>) -> None",
+            "signature": "(*, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>, parse_items_with_underscore: 'bool' = True) -> None",
             "methods": [
                 {
                     "type": "#func",
@@ -126,7 +126,7 @@
                     "name": "__init__",
                     "doc": "Initialize self.  See help(type(self)) for accurate signature.",
                     "parent_module": "AthenaDocumentor.models.parser",
-                    "signature": "(self, *, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>) -> None",
+                    "signature": "(self, *, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>, parse_items_with_underscore: 'bool' = True) -> None",
                     "methods": []
                 },
                 {

@@ -26,7 +26,7 @@ class ParsedObject:
     type:Types
 
     def __init__(self, obj):
-        if not (inspect.isclass(obj) or inspect.isfunction(obj) or inspect.ismodule(obj)):
+        if not any((inspect.isclass(obj), inspect.ismodule(obj), inspect.isfunction(obj))):
             raise TypeError
 
         self.name = obj.__name__

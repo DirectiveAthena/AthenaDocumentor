@@ -26,6 +26,7 @@ class Parser:
     """
     root_module:Any
     markdown_structure:type[MarkdownStructure]=field(default=MarkdownStructure)
+    parse_items_with_underscore:bool=True
 
     # non init
     parsed_items:dict[str:list[ParsedObject]]=field(init=False, default_factory=dict)
@@ -57,8 +58,12 @@ class Parser:
                 self._parse_recursive(attr)
 
             elif inspect.isclass(attr) or inspect.isfunction(attr) or inspect.ismethod(attr):
+                # if the setting is disabled, don't store those who start with an underscore
+                if (not self.parse_items_with_underscore and component.startswith("_")) or inspect.getmodule(attr) is None:
+                    continue
                 # don't store components which are not a native part of the root module
-                if not (parsed_attr := ParsedObject(attr)).module_name.startswith(self.root_module.__name__):
+                parsed_attr = ParsedObject(attr)
+                if not parsed_attr.module_name.startswith(self.root_module.__name__):
                     continue
 
                 # make sure the module name is in the dictionary else it will fail
@@ -119,7 +124,7 @@ class Parser:
         """
         Output the 'parsed_items' to string, formatted in MarkDown
         """
-        return "\n".join(self._output_to_markdown())
+        return "".join(self._output_to_markdown())
 
 
 
