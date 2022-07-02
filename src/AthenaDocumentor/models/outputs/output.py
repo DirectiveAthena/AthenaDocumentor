@@ -29,7 +29,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 
@@ -42,7 +42,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 
@@ -55,7 +55,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 
@@ -68,7 +68,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 
@@ -81,7 +81,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 
@@ -95,7 +95,7 @@ class Output(ABC):
         Parameters:
         - parsed_object:ParsedObject
 
-        Returns: strtr`
+        Returns: str
         """
         pass
 

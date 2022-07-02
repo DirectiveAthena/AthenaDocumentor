@@ -7,35 +7,35 @@ $\qquad$**format_documentation**(cls, parsed_object: ParsedObject) -> str
 <span class="parent_indent">Formats the `parsed_object.doc` into a correct string.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_type**(cls, parsed_object: ParsedObject) -> str
 
 <span class="parent_indent">Formats the `parsed_object.type` into a correct string.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_module_name**(cls, parsed_object: ParsedObject) -> str
 
 <span class="parent_indent">Formats the `parsed_object.module_name` into a correct string.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_object_name**(cls, parsed_object: ParsedObject) -> str
 
 <span class="parent_indent">Formats the `parsed_object.name` into a correct string.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_signature**(cls, parsed_object: ParsedObject) -> str
 
 <span class="parent_indent">Formats the `parsed_object.signature` into a correct string.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_header**(cls, parsed_object: ParsedObject) -> str
 
@@ -43,7 +43,7 @@ $\qquad$**format_header**(cls, parsed_object: ParsedObject) -> str
 This forms the piece of documentation that display the name, signature, type and other similar components.
 Parameters:
 - parsed_object:ParsedObject
-Returns: strtr`</span>
+Returns: str</span>
 
 $\qquad$**format_footer**(cls, parsed_object: ParsedObject) -> str
 
@@ -238,7 +238,7 @@ Parameters:
 
 #func <small>AthenaDocumentor.functions.markdown_string_manipulations.</small>**remove_empty_prefix**(text: str) -> str
 
-Removes any double spaces ("")
+Removes any double spaces ("  ")
 
 Parameters:
 - text : str -> input text

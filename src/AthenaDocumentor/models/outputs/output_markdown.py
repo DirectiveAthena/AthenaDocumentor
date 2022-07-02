@@ -31,7 +31,7 @@ class OutputMarkdown(Output):
     def format_documentation(cls,parsed_object:ParsedObject) -> str:
         if parsed_object.doc is None or not parsed_object.doc:
             return cls.missing_documentation
-        return msm.remove_empty_prefix(parsed_object.doc)
+        return parsed_object.doc
 
     @classmethod
     def format_type(cls, parsed_object:ParsedObject) -> str:
