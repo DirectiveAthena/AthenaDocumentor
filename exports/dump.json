@@ -2,8 +2,97 @@
     "AthenaDocumentor": [
         {
             "type": "#class",
-            "name": "MarkdownStructure",
-            "doc": "The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.",
+            "name": "Output",
+            "doc": "Standardized way of outputting correctly parsed objects into string objects.",
+            "parent_module": "AthenaDocumentor",
+            "signature": "()",
+            "methods": [
+                {
+                    "type": "#func",
+                    "name": "format_documentation",
+                    "doc": "Formats the `parsed_object.doc` into a correct string.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_type",
+                    "doc": "Formats the `parsed_object.type` into a correct string.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_module_name",
+                    "doc": "Formats the `parsed_object.module_name` into a correct string.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_object_name",
+                    "doc": "Formats the `parsed_object.name` into a correct string.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_signature",
+                    "doc": "Formats the `parsed_object.signature` into a correct string.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_header",
+                    "doc": "Formats multiple components of `parsed_object` together.\nThis forms the piece of documentation that display the name, signature, type and other similar components.\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `str`",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_footer",
+                    "doc": "Formats multiple components of `parsed_object` together.\nThis forms the piece of documentation that display the end of the piece of documentation for that `parsed_object`\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `s",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_function",
+                    "doc": "Calls on other `Output` methods to export a sensible string for a function object\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `s",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_class",
+                    "doc": "Calls on other `Output` methods to export a sensible string for a class object\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `s",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_method",
+                    "doc": "Calls on other `Output` methods to export a sensible string for a method object\n\nParameters:\n- parsed_object:ParsedObject\n\nReturns: `s",
+                    "parent_module": "AthenaDocumentor.models.outputs.output",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                }
+            ]
+        },
+        {
+            "type": "#class",
+            "name": "OutputMarkdown",
+            "doc": "The OutputMarkdown supports the `Parser` in formatting `ParsedObject` objects to the defined format.",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
             "methods": [
@@ -11,7 +100,7 @@
                     "type": "#func",
                     "name": "format_documentation",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -19,7 +108,7 @@
                     "type": "#func",
                     "name": "format_type",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -27,7 +116,7 @@
                     "type": "#func",
                     "name": "format_module_name",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -35,7 +124,7 @@
                     "type": "#func",
                     "name": "format_object_name",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -43,15 +132,15 @@
                     "type": "#func",
                     "name": "format_signature",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
                 {
                     "type": "#func",
                     "name": "format_header",
-                    "doc": "Composes the str output meant for the \"header\" of a parsed object.\nThe header holds the title, name and signature.\n\nParameters:\n- parsed_object: `ParsedObject`",
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -59,7 +148,7 @@
                     "type": "#func",
                     "name": "format_footer",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -67,7 +156,7 @@
                     "type": "#func",
                     "name": "structure_function",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -75,7 +164,7 @@
                     "type": "#func",
                     "name": "structure_class",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 },
@@ -83,7 +172,7 @@
                     "type": "#func",
                     "name": "structure_method",
                     "doc": null,
-                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "parent_module": "AthenaDocumentor.models.outputs.output_markdown",
                     "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
                     "methods": []
                 }
@@ -144,7 +233,7 @@
             "name": "Parser",
             "doc": "Object to control the correct handling of parsing through a Python package",
             "parent_module": "AthenaDocumentor",
-            "signature": "(*, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>, parse_items_with_underscore: 'bool' = True) -> None",
+            "signature": "(*, root_module: 'Any', markdown_structure: 'type[Output]' = <class 'AthenaDocumentor.models.outputs.output_markdown.OutputMarkdown'>, parse_items_with_underscore: 'bool' = True) -> None",
             "methods": [
                 {
                     "type": "#func",
@@ -215,7 +304,7 @@
                     "name": "__init__",
                     "doc": "Initialize self.  See help(type(self)) for accurate signature.",
                     "parent_module": "AthenaDocumentor.models.parser",
-                    "signature": "(self, *, root_module: 'Any', markdown_structure: 'type[MarkdownStructure]' = <class 'AthenaDocumentor.models.markdown_structure.MarkdownStructure'>, parse_items_with_underscore: 'bool' = True) -> None",
+                    "signature": "(self, *, root_module: 'Any', markdown_structure: 'type[Output]' = <class 'AthenaDocumentor.models.outputs.output_markdown.OutputMarkdown'>, parse_items_with_underscore: 'bool' = True) -> None",
                     "methods": []
                 },
                 {
@@ -238,7 +327,8 @@
             ]
         }
     ],
-    "AthenaDocumentor.models.markdown_structure": [],
+    "AthenaDocumentor.models.outputs.output": [],
+    "AthenaDocumentor.models.outputs.output_markdown": [],
     "AthenaDocumentor.models.parsed_data": [],
     "AthenaDocumentor.models.parser": [],
     "AthenaDocumentor.data.types": [

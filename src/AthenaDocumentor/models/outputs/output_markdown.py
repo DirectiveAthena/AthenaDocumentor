@@ -7,15 +7,17 @@ from __future__ import annotations
 # Custom Library
 
 # Custom Packages
+from AthenaDocumentor.models.outputs.output import Output
+
 import AthenaDocumentor.functions.markdown_string_manipulations as msm
 from AthenaDocumentor.models.parsed_data import ParsedObject
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
-class MarkdownStructure:
+class OutputMarkdown(Output):
     """
-    The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.
+    The OutputMarkdown supports the `Parser` in formatting `ParsedObject` objects to the defined format.
     """
     indent:int = 4
 
@@ -46,13 +48,6 @@ class MarkdownStructure:
 
     @classmethod
     def format_header(cls, parsed_object: ParsedObject) -> str:
-        """
-        Composes the str output meant for the "header" of a parsed object.
-        The header holds the title, name and signature.
-
-        Parameters:
-        - parsed_object: `ParsedObject`
-        """
         type_:str = cls.format_type(parsed_object)
         module_name:str = cls.format_module_name(parsed_object)
         object_name:str = cls.format_object_name(parsed_object)

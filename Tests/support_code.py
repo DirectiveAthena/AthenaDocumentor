@@ -91,9 +91,9 @@ strange_object = {"help":["I am trapped in a list"]}
 # ----------------------------------------------------------------------------------------------------------------------
 # - Full MD output -
 # ----------------------------------------------------------------------------------------------------------------------
-ATHENADOCUMENTOR_MD = f"""#class <small>AthenaDocumentor.</small>**MarkdownStructure**()
+ATHENADOCUMENTOR_MD = f"""#class <small>AthenaDocumentor.</small>**OutputMarkdown**()
 
-The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.
+The OutputMarkdown supports the `Parser` in formatting `ParsedObject` objects to the defined format.
 
 
 
@@ -123,7 +123,7 @@ $\qquad$**__eq__**(self, other)
 ---
 
 
-#class <small>AthenaDocumentor.</small>**Parser**(*, root_module: Any, markdown_structure: type[MarkdownStructure] = <class AthenaDocumentor.models.markdown_structure.MarkdownStructure>) -> None
+#class <small>AthenaDocumentor.</small>**Parser**(*, root_module: Any, markdown_structure: type[OutputMarkdown] = <class AthenaDocumentor.models.markdown_structure.OutputMarkdown>) -> None
 
 Object to control the correct handling of parsing through a Python package
 
@@ -157,7 +157,7 @@ $\qquad$**output_to_markdown_string**(self) -> str
 
 <span class="parent_indent">Output the 'parsed_items' to string, formatted in MarkDown</span>
 
-$\qquad$**__init__**(self, *, root_module: Any, markdown_structure: type[MarkdownStructure] = <class AthenaDocumentor.models.markdown_structure.MarkdownStructure>) -> None
+$\qquad$**__init__**(self, *, root_module: Any, markdown_structure: type[OutputMarkdown] = <class AthenaDocumentor.models.markdown_structure.OutputMarkdown>) -> None
 
 <span class="parent_indent">Initialize self.See help(type(self)) for accurate signature.</span>
 

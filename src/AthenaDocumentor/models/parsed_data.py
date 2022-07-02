@@ -34,8 +34,6 @@ class ParsedObject:
 
         self.name = obj.__name__
         doc = inspect.getdoc(obj)
-        if doc is not None:
-            doc = inspect.cleandoc(doc)
         self.doc = doc
         self.parent_module = inspect.getmodule(obj)
         try:
