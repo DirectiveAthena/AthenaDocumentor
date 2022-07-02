@@ -98,18 +98,29 @@ class Parser:
                 )
             )
 
+    def _output_to_markdown(self):
+        for module_name, module_list in self.parsed_items.items():  # type: str, list[ParsedObject]
+            for module in module_list:
+                match module:
+                    case ParsedObject(type=Types.cls):
+                        yield self.markdown_structure.structure_class(module)
+                    case ParsedObject(type=Types.fnc):
+                        yield self.markdown_structure.structure_function(module)
+
     def output_to_markdown_file(self, filepath:str):
         """
-        Output the 'parsed_items' to a structured markdown file.
+        Output the 'parsed_items' to a structured MarkDown file.
         """
         with open(filepath, "w+") as file:
-            for module_name, module_list in self.parsed_items.items(): #type: str, list[ParsedObject]
-                for module in module_list:
-                    match module:
-                        case ParsedObject(type=Types.cls):
-                            file.write(self.markdown_structure.structure_class(module))
-                        case ParsedObject(type=Types.fnc):
-                            file.write(self.markdown_structure.structure_function(module))
+            for n in self._output_to_markdown():
+                file.write(n)
+
+    def output_to_markdown_string(self) -> str:
+        """
+        Output the 'parsed_items' to string, formatted in MarkDown
+        """
+        return "\n".join(self._output_to_markdown())
+
 
 
 

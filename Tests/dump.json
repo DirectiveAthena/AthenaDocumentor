@@ -99,10 +99,26 @@
                 },
                 {
                     "type": "#func",
+                    "name": "_output_to_markdown",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self)",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
                     "name": "output_to_markdown_file",
-                    "doc": "Output the 'parsed_items' to a structured markdown file.",
+                    "doc": "Output the 'parsed_items' to a structured MarkDown file.",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, filepath: 'str')",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "output_to_markdown_string",
+                    "doc": "Output the 'parsed_items' to string, formatted in MarkDown",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self) -> 'str'",
                     "methods": []
                 },
                 {

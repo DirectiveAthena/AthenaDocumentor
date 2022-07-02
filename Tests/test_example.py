@@ -4,14 +4,13 @@
 # General Packages
 from __future__ import annotations
 import unittest
-import json
 
 # Custom Library
 import AthenaDocumentor.models.parser
 import AthenaDocumentor.models.parsed_data
 
 # Custom Packages
-from Tests.support_code import Person, PERSON, random_function, RANDOM_FUNCTION, strange_object
+from Tests.support_code import Person, PERSON, random_function, RANDOM_FUNCTION, strange_object, ATHENADOCUMENTOR_MD
 
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
@@ -45,4 +44,12 @@ class TestDocumentor(unittest.TestCase):
             AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
                 .parse()
                 .output_to_markdown_file(filepath="D:\Directive Athena\Programs\Veritas\Storage\Documentation\dump.md")
+        )
+
+    def test_output_support_code(self):
+        self.assertEqual(
+            ATHENADOCUMENTOR_MD,
+            AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
+                .parse()
+                .output_to_markdown_string()
         )
