@@ -42,7 +42,7 @@ class MarkdownStructure:
         return f"**{parsed_object.name}**"
     @classmethod
     def format_signature(cls, parsed_object:ParsedObject) -> str:
-        return str(parsed_object.signature)
+        return str(parsed_object.signature).replace("'", "")
 
     @classmethod
     def format_header(cls, parsed_object: ParsedObject) -> str:
