@@ -26,6 +26,16 @@
             ]
         }
     ],
+    "AthenaDocumentor.functions.type_finder": [
+        {
+            "type": "#func",
+            "name": "find_type",
+            "doc": null,
+            "parent_module": "AthenaDocumentor.functions.type_finder",
+            "signature": "(obj) -> 'Types'",
+            "methods": []
+        }
+    ],
     "AthenaDocumentor.models.parsed_data": [
         {
             "type": "#class",
@@ -78,32 +88,72 @@
             ]
         }
     ],
-    "AthenaDocumentor.functions.parser": [
+    "AthenaDocumentor.models.parser": [
         {
-            "type": "#func",
-            "name": "_parse_recursive",
-            "doc": null,
-            "parent_module": "AthenaDocumentor.functions.parser",
-            "signature": "(module_, *, to_dict: 'bool' = False)",
-            "methods": []
-        },
-        {
-            "type": "#func",
-            "name": "parse_all",
-            "doc": null,
-            "parent_module": "AthenaDocumentor.functions.parser",
-            "signature": "(module_, *, to_dict: 'bool' = False) -> 'fully_parsed'",
-            "methods": []
-        }
-    ],
-    "AthenaDocumentor.functions.type_finder": [
-        {
-            "type": "#func",
-            "name": "find_type",
-            "doc": null,
-            "parent_module": "AthenaDocumentor.functions.type_finder",
-            "signature": "(obj) -> 'Types'",
-            "methods": []
+            "type": "#class",
+            "name": "Parser",
+            "doc": "Object to control the correct handling of parsing through a Python package\n\nParameters:\n    - root_module: Define the base package it must parse through",
+            "parent_module": "AthenaDocumentor.models.parser",
+            "signature": "(*, root_module: 'Any') -> None",
+            "methods": [
+                {
+                    "type": "#func",
+                    "name": "parse",
+                    "doc": "Main method of the Parser object.\nRunning this will start the pared and populate the 'parsed_items' slot of the Parser object\n\nReturns:\n    self : Done for chaining methods",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self) -> 'Parser'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "_parse_recursive",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self, module_to_parse: 'Any')",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "output_to_dict",
+                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.\n\nParameters:\n    - flat: Outputs the dictionary in base types only (string, integers, booleans, etc...)\n\nReturns:\n    dict",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self, *, flat: 'bool' = False) -> 'dict[str:list[dict]]'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "output_to_json_file",
+                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`\n\nParameters:\n    - filepath: Defines the output file location",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self, filepath: 'str')",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "__init__",
+                    "doc": "Initialize self.  See help(type(self)) for accurate signature.",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self, *, root_module: 'Any') -> None",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "__repr__",
+                    "doc": "Return repr(self).",
+                    "parent_module": "AthenaDocumentor.models.parser",
+                    "signature": "(self)",
+                    "methods": [
+                        {
+                            "type": "#func",
+                            "name": "__repr__",
+                            "doc": null,
+                            "parent_module": "AthenaDocumentor.models.parser",
+                            "signature": "(self)",
+                            "methods": []
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

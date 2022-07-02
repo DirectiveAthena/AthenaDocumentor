@@ -7,7 +7,7 @@ import unittest
 import json
 
 # Custom Library
-import AthenaDocumentor.functions.parser
+import AthenaDocumentor.models.parser
 import AthenaDocumentor.models.parsed_data
 
 # Custom Packages
@@ -34,10 +34,8 @@ class TestDocumentor(unittest.TestCase):
             AthenaDocumentor.models.parsed_data.ParsedObject(strange_object)
 
     def test_everything(self):
-        with open("dump.json", "w+") as file:
-            file.write(
-                json.dumps(
-                    AthenaDocumentor.functions.parser.parse_all(AthenaDocumentor, to_dict=True),
-                    indent=4
-                )
-            )
+        parser = (
+            AthenaDocumentor.models.parser.Parser(root_module=AthenaDocumentor)
+                .parse()
+                .output_to_json_file(filepath="dump.json")
+        )
