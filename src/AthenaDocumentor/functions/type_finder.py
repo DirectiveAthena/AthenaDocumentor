@@ -18,5 +18,9 @@ def find_type(obj) -> Types:
         return Types.cls
     elif inspect.isfunction(obj) or inspect.ismethod(obj):
         return Types.fnc
+    elif isinstance(obj, staticmethod):
+        return Types.stat_mth
+    elif isinstance(obj, classmethod):
+        return Types.cls_mth
     else:
         return Types.unknown

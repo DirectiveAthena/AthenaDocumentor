@@ -77,7 +77,6 @@ class Parser:
                 else:
                     self.parsed_items[parsed_attr.module_name].append(parsed_attr)
 
-
     def output_to_dict(self, *, flat:bool=False) -> dict[str:list[dict]]:
         """
         Output the 'parsed_items' dictionary as is, or with custom parameters.
@@ -102,6 +101,7 @@ class Parser:
                     indent=4
                 )
             )
+
     def output_to_json_string(self) -> str:
         """
         Output the 'parsed_items' dictionary to a json formatted string.
@@ -120,14 +120,19 @@ class Parser:
                         yield self.markdown_structure.structure_class(module)
                     case ParsedObject(type=Types.fnc):
                         yield self.markdown_structure.structure_function(module)
+                    case ParsedObject(type=Types.stat_mth):
+                        yield self.markdown_structure.structure_function(module)
+                    case ParsedObject(type=Types.cls_mth):
+                        yield self.markdown_structure.structure_function(module)
 
-    def output_to_markdown_file(self, filepath:str):
+    def output_to_markdown_file(self, *filepath:str):
         """
         Output the 'parsed_items' to a structured MarkDown file.
         """
-        with open(filepath, "w+") as file:
-            for n in self._output_to_markdown():
-                file.write(n)
+        for fp in filepath:
+            with open(fp, "w+") as file:
+                for n in self._output_to_markdown():
+                    file.write(n)
 
     def output_to_markdown_string(self) -> str:
         """

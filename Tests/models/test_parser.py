@@ -10,7 +10,7 @@ import AthenaDocumentor.models.parser
 import AthenaDocumentor.models.parsed_data
 
 # Custom Packages
-from Tests.support_code import Person, PERSON, random_function, RANDOM_FUNCTION, strange_object, ATHENADOCUMENTOR_MD
+
 # ----------------------------------------------------------------------------------------------------------------------
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------

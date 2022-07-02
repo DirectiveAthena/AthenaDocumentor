@@ -6,7 +6,88 @@
             "doc": "The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
-            "methods": []
+            "methods": [
+                {
+                    "type": "#func",
+                    "name": "format_documentation",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_type",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_module_name",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_object_name",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_signature",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_header",
+                    "doc": "Composes the str output meant for the \"header\" of a parsed object.\nThe header holds the title, name and signature.\n\nParameters:\n- parsed_object: `ParsedObject`",
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "format_footer",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_function",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_class",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                },
+                {
+                    "type": "#func",
+                    "name": "structure_method",
+                    "doc": null,
+                    "parent_module": "AthenaDocumentor.models.markdown_structure",
+                    "signature": "(cls, parsed_object: 'ParsedObject') -> 'str'",
+                    "methods": []
+                }
+            ]
         },
         {
             "type": "#class",
@@ -118,7 +199,7 @@
                     "name": "output_to_markdown_file",
                     "doc": "Output the 'parsed_items' to a structured MarkDown file.",
                     "parent_module": "AthenaDocumentor.models.parser",
-                    "signature": "(self, filepath: 'str')",
+                    "signature": "(self, *filepath: 'str')",
                     "methods": []
                 },
                 {
@@ -177,6 +258,14 @@
                     "methods": []
                 },
                 {
+                    "type": "#class",
+                    "name": "object",
+                    "doc": "The base class of the class hierarchy.\n\nWhen called, it accepts no arguments and returns a new featureless\ninstance that has no instance attributes and cannot be given any.",
+                    "parent_module": "builtins",
+                    "signature": "()",
+                    "methods": []
+                },
+                {
                     "type": "#func",
                     "name": "__new__",
                     "doc": "Create and return a new object.  See help(type) for accurate signature.",
@@ -191,7 +280,7 @@
         {
             "type": "#func",
             "name": "indent_all_lines",
-            "doc": "Indents all lines in a string with a defined amount of indentation",
+            "doc": "Indents all lines in a string with a defined amount of indentation\n\nParameters:\n- text : str -> input text\n- indent : int -> amount of whitespaces that has to be added before everything else",
             "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
             "signature": "(text: 'str', indent: 'int') -> 'str'",
             "methods": []
@@ -199,7 +288,7 @@
         {
             "type": "#func",
             "name": "quote_all_lines",
-            "doc": "Places a quote prefix in front of all lines in a string",
+            "doc": "Places a quote prefix in front of all lines in a string\n\nParameters:\n- text : str -> input text",
             "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
             "signature": "(text: 'str') -> 'str'",
             "methods": []
@@ -207,7 +296,7 @@
         {
             "type": "#func",
             "name": "remove_empty_prefix",
-            "doc": null,
+            "doc": "Removes any double spaces (\"  \")\n\nParameters:\n- text : str -> input text",
             "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
             "signature": "(text: 'str') -> 'str'",
             "methods": []

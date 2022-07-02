@@ -3,9 +3,10 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # General Packages
 from __future__ import annotations
+
 from dataclasses import dataclass
 import inspect
-from types import ModuleType
+from types import ModuleType, FunctionType
 # Custom Library
 
 # Custom Packages
@@ -26,7 +27,9 @@ class ParsedObject:
     type:Types
 
     def __init__(self, obj):
-        if not any((inspect.isclass(obj), inspect.ismodule(obj), inspect.isfunction(obj))):
+        if isinstance(obj, classmethod|staticmethod):
+            obj = obj.__func__
+        elif not any((inspect.isclass(obj), inspect.ismodule(obj), inspect.isfunction(obj))):
             raise TypeError
 
         self.name = obj.__name__
@@ -44,7 +47,12 @@ class ParsedObject:
         self.methods = [
             ParsedObject(obj_method)
             for name, obj_method in obj.__dict__.items()
-            if (inspect.ismethod(obj_method) or inspect.isfunction(obj_method))
+            # if not name.startswith("__")
+            if isinstance(obj_method, classmethod|FunctionType|type)
+                # inspect.ismethod(obj_method)
+                # or inspect.isfunction(obj_method)
+                # or inspect.isclass(obj_method)
+
         ]
 
         self.type = find_type(obj)

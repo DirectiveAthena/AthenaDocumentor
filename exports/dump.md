@@ -2,7 +2,48 @@
 
 The MarkdownStructure supports the `Parser` in formatting `ParsedObject` objects to the defined format.
 
+$\qquad$**format_documentation**(cls, parsed_object: ParsedObject) -> str
 
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**format_type**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**format_module_name**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**format_object_name**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**format_signature**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**format_header**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">Composes the str output meant for the "header" of a parsed object.
+The header holds the title, name and signature.
+Parameters:
+- parsed_object: `ParsedObject`</span>
+
+$\qquad$**format_footer**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**structure_function**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**structure_class**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
+
+$\qquad$**structure_method**(cls, parsed_object: ParsedObject) -> str
+
+<span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</s
 
 ---
 
@@ -59,7 +100,7 @@ $\qquad$**_output_to_markdown**(self)
 
 <span class="parent_indent">*<span style=color:red>-!- Missing documentation -!-</span>*</span>
 
-$\qquad$**output_to_markdown_file**(self, filepath: str)
+$\qquad$**output_to_markdown_file**(self, *filepath: str)
 
 <span class="parent_indent">Output the 'parsed_items' to a structured MarkDown file.</span>
 
@@ -89,6 +130,12 @@ start: the initial start value or None
 count: the number of existing members
 last_value: the last value assigned or None</span>
 
+$\qquad$**object**()
+
+<span class="parent_indent">The base class of the class hierarchy.
+When called, it accepts no arguments and returns a new featureless
+instance that has no instance attributes and cannot be given any.</span>
+
 $\qquad$**__new__**(cls, value)
 
 <span class="parent_indent">Create and return a new object.See help(type) for accurate signature.</s
@@ -99,17 +146,27 @@ $\qquad$**__new__**(cls, value)
 
 Indents all lines in a string with a defined amount of indentation
 
+Parameters:
+- text : str -> input text
+- indent : int -> amount of whitespaces that has to be added before everything else
+
 ---
 
 #func <small>AthenaDocumentor.functions.markdown_string_manipulations.</small>**quote_all_lines**(text: str) -> str
 
 Places a quote prefix in front of all lines in a string
 
+Parameters:
+- text : str -> input text
+
 ---
 
 #func <small>AthenaDocumentor.functions.markdown_string_manipulations.</small>**remove_empty_prefix**(text: str) -> str
 
-*<span style=color:red>-!- Missing documentation -!-</span>*
+Removes any double spaces ("")
+
+Parameters:
+- text : str -> input text
 
 ---
 

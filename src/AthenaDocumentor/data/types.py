@@ -15,3 +15,5 @@ class Types(Enum):
     fnc= "#func"
     cls= "#class"
     unknown="**!*UNKNOWN*!**"
+    cls_mth = "#classmethod"
+    stat_mth = "#staticmethod"
