@@ -19,6 +19,10 @@ from AthenaDocumentor.data.types import Types
 # ----------------------------------------------------------------------------------------------------------------------
 @dataclass(init=False, eq=False)
 class Parsed(ABC):
+    """
+    The base Parsed class is an abstract class, which means the classes that inherit from it,
+    must implement all following methods.
+    """
     obj:Any
     obj_name:str
     parent_module:ModuleType|None
@@ -36,6 +40,7 @@ class Parsed(ABC):
         pass
 
     def to_dict(self) -> dict:
+        """Cast the object attributes to a dictionary format"""
         return {
             "type":self.type.value,
             "name":self.obj_name,

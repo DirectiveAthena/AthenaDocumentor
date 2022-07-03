@@ -3,7 +3,7 @@
         {
             "type": "#class",
             "name": "Output",
-            "doc": "Standardized way of outputting correctly parsed objects into string objects.",
+            "doc": "Standardized way of outputting correctly parsed objects into string objects.\nUsed by the parser `output_...` methods to correctly form the wanted text version\n\nThe base Output class is an abstract class, which means the classes that inherit from it,\nmust implement all following methods.",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
             "methods": [
@@ -82,7 +82,7 @@
         {
             "type": "#class",
             "name": "OutputMarkdown",
-            "doc": "The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to the defined format.",
+            "doc": "Standardized way of outputting correctly parsed objects into string objects,\nwhich can be interpreted as Markdown text\nUsed by the parser `output_...` methods to correctly form the wanted text version",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
             "methods": [
@@ -249,7 +249,7 @@
         {
             "type": "#class",
             "name": "Types",
-            "doc": "An enumeration.",
+            "doc": "A simple data storage class to hold all tags meant to precede the object title.",
             "parent_module": "AthenaDocumentor.data.types",
             "signature": "(value, names=None, *, module=None, qualname=None, type=None, start=1)",
             "methods": [
@@ -281,7 +281,7 @@
         {
             "type": "#class",
             "name": "Parsed",
-            "doc": "Parsed(obj, parent_module)",
+            "doc": "The base Parsed class is an abstract class, which means the classes that inherit from it,\nmust implement all following methods.",
             "parent_module": "AthenaDocumentor.models.parsed.parsed",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -295,7 +295,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed",
                     "signature": "(self) -> 'dict'"
                 },
@@ -313,7 +313,7 @@
         {
             "type": "#class",
             "name": "ParsedClass",
-            "doc": "ParsedClass(obj, parent_module)",
+            "doc": "A dataclass for storage of class object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the class in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_class",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -327,7 +327,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_class",
                     "signature": "(self) -> 'dict'"
                 },
@@ -345,7 +345,7 @@
         {
             "type": "#class",
             "name": "ParsedFunction",
-            "doc": "ParsedFunction(obj, parent_module)",
+            "doc": "A dataclass for storage of a function object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the function in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_function",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -359,7 +359,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_function",
                     "signature": "(self) -> 'dict'"
                 },
@@ -377,7 +377,7 @@
         {
             "type": "#class",
             "name": "ParsedMethod",
-            "doc": "ParsedMethod(obj, parent_module)",
+            "doc": "A dataclass for storage of method object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the method in question which must be stored\n- parent_module: the module where the class which holds the method in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_method",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -391,7 +391,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_method",
                     "signature": "(self) -> 'dict'"
                 },
@@ -409,7 +409,7 @@
         {
             "type": "#class",
             "name": "ParsedModule",
-            "doc": "ParsedModule(obj, parent_module)",
+            "doc": "A dataclass for storage of module object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the module in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_module",
             "signature": "(obj, parent_module)",
             "methods": [

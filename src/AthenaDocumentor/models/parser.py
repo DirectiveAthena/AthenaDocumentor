@@ -25,6 +25,12 @@ from AthenaDocumentor.models.parsed import Parsed, ParsedModule, ParsedMethod,Pa
 class Parser:
     """
     Object to control the correct handling of parsing through a Python package
+
+    Parameters:
+    - root_module: `types.ModuleType`
+    - markdown_structure: `AthenaDocumentor.OutputMarkdown`
+    - parse_items_with_underscore: `bool` -> Boolean option whether to implement single underscored objects in parsing
+
     """
     root_module:types.ModuleType
     markdown_structure:type[Output]=field(default=OutputMarkdown)
@@ -100,6 +106,9 @@ class Parser:
     def output_to_dict(self, *, flat:bool=False) -> dict[str:list[dict]]:
         """
         Output the 'parsed_items' dictionary as is, or with custom parameters.
+
+        Parameters:
+        - flat: bool -> Will return the `self.parsed_items` as is, calling the `to_dict()` method on all Parsed objects
         """
         if not flat:
             return copy.deepcopy(self.parsed_items)
@@ -113,6 +122,9 @@ class Parser:
         """
         Output the 'parsed_items' dictionary to a json file.
         This method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`
+
+        Parameters:
+        - filepath -> The file to write to
         """
         with open(filepath, "w+") as file:
             file.write(
@@ -152,6 +164,9 @@ class Parser:
     def output_to_markdown_file(self, *filepath:str):
         """
         Output the 'parsed_items' to a structured MarkDown file.
+
+        Parameters:
+        - filepath -> The file to write to
         """
         for fp in filepath:
             with open(fp, "w+") as file:

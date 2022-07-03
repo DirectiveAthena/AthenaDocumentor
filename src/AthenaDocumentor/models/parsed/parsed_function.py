@@ -17,6 +17,14 @@ from AthenaDocumentor.data.types import Types
 # ----------------------------------------------------------------------------------------------------------------------
 @dataclass(init=False, eq=False)
 class ParsedFunction(Parsed):
+    """
+    A dataclass for storage of a function object components.
+    Does not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings
+
+    Parameters:
+    - obj: the function in question which must be stored
+    - parent_module: the module where the class in located in. This is a `types.ModuleType`
+    """
     signature: inspect.Signature|None
 
     def __init__(self, obj,parent_module):

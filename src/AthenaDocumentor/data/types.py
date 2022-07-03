@@ -12,6 +12,9 @@ from enum import Enum
 # - Code -
 # ----------------------------------------------------------------------------------------------------------------------
 class Types(Enum):
+    """
+    A simple data storage class to hold all tags meant to precede the object title.
+    """
     fnc= "#func"
     cls= "#class"
     unknown="**!*UNKNOWN*!**"

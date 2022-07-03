@@ -16,7 +16,9 @@ from AthenaDocumentor.models.parsed import Parsed, ParsedMethod,ParsedClass,Pars
 # ----------------------------------------------------------------------------------------------------------------------
 class OutputMarkdown(Output):
     """
-    The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to a Markdown format.
+    Standardized way of outputting correctly parsed objects into string objects,
+    which can be interpreted as Markdown text
+    Used by the parser `output_...` methods to correctly form the wanted text version
     """
     indent:int = 4
 
@@ -38,6 +40,7 @@ class OutputMarkdown(Output):
 
     @classmethod
     def format_type(cls, parsed_object:Parsed) -> str:
+        # todo make the call of this section a bool parameter
         return parsed_object.type.value
     @classmethod
     def format_module_name(cls, parsed_object:Parsed) -> str:
