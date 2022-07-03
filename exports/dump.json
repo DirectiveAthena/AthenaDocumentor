@@ -3,7 +3,7 @@
         {
             "type": "#class",
             "name": "Output",
-            "doc": "Standardized way of outputting correctly parsed objects into string objects.",
+            "doc": "Standardized way of outputting correctly parsed objects into string objects.\nUsed by the parser `output_...` methods to correctly form the wanted text version\n\nThe base Output class is an abstract class, which means the classes that inherit from it,\nmust implement all following methods.",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
             "methods": [
@@ -82,7 +82,7 @@
         {
             "type": "#class",
             "name": "OutputMarkdown",
-            "doc": "The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to the defined format.",
+            "doc": "Standardized way of outputting correctly parsed objects into string objects,\nwhich can be interpreted as Markdown text\nUsed by the parser `output_...` methods to correctly form the wanted text version",
             "parent_module": "AthenaDocumentor",
             "signature": "()",
             "methods": [
@@ -161,7 +161,7 @@
         {
             "type": "#class",
             "name": "Parser",
-            "doc": "Object to control the correct handling of parsing through a Python package",
+            "doc": "Object to control the correct handling of parsing through a Python package\n\nParameters:\n- root_module: `types.ModuleType`\n- markdown_structure: `AthenaDocumentor.OutputMarkdown`\n- parse_items_with_underscore: `bool` -> Boolean option whether to implement single underscored objects in parsing",
             "parent_module": "AthenaDocumentor",
             "signature": "(*, root_module: 'types.ModuleType', markdown_structure: 'type[Output]' = <class 'AthenaDocumentor.models.outputs.output_markdown.OutputMarkdown'>, parse_items_with_underscore: 'bool' = True) -> None",
             "methods": [
@@ -189,14 +189,14 @@
                 {
                     "type": "#method",
                     "name": "output_to_dict",
-                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.",
+                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.\n\nParameters:\n- flat: bool -> Will return the `self.parsed_items` as is, calling the `to_dict()` method on all Parsed objects",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, *, flat: 'bool' = False) -> 'dict[str:list[dict]]'"
                 },
                 {
                     "type": "#method",
                     "name": "output_to_json_file",
-                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`",
+                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`\n\nParameters:\n- filepath -> The file to write to",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, filepath: 'str')"
                 },
@@ -217,7 +217,7 @@
                 {
                     "type": "#method",
                     "name": "output_to_markdown_file",
-                    "doc": "Output the 'parsed_items' to a structured MarkDown file.",
+                    "doc": "Output the 'parsed_items' to a structured MarkDown file.\n\nParameters:\n- filepath -> The file to write to",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, *filepath: 'str')"
                 },
@@ -249,7 +249,7 @@
         {
             "type": "#class",
             "name": "Types",
-            "doc": "An enumeration.",
+            "doc": "A simple data storage class to hold all tags meant to precede the object title.",
             "parent_module": "AthenaDocumentor.data.types",
             "signature": "(value, names=None, *, module=None, qualname=None, type=None, start=1)",
             "methods": [
@@ -277,34 +277,11 @@
             ]
         }
     ],
-    "AthenaDocumentor.functions.markdown_string_manipulations": [
-        {
-            "type": "#func",
-            "name": "indent_all_lines",
-            "doc": "Indents all lines in a string with a defined amount of indentation\n\nParameters:\n- text : str -> input text\n- indent : int -> amount of whitespaces that has to be added before everything else",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str', indent: 'int') -> 'str'"
-        },
-        {
-            "type": "#func",
-            "name": "quote_all_lines",
-            "doc": "Places a quote prefix in front of all lines in a string\n\nParameters:\n- text : str -> input text",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str') -> 'str'"
-        },
-        {
-            "type": "#func",
-            "name": "remove_empty_prefix",
-            "doc": "Removes any double spaces (\"  \")\n\nParameters:\n- text : str -> input text",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str') -> 'str'"
-        }
-    ],
     "AthenaDocumentor.models.parsed.parsed": [
         {
             "type": "#class",
             "name": "Parsed",
-            "doc": "Parsed(obj, parent_module)",
+            "doc": "The base Parsed class is an abstract class, which means the classes that inherit from it,\nmust implement all following methods.",
             "parent_module": "AthenaDocumentor.models.parsed.parsed",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -318,7 +295,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed",
                     "signature": "(self) -> 'dict'"
                 },
@@ -336,7 +313,7 @@
         {
             "type": "#class",
             "name": "ParsedClass",
-            "doc": "ParsedClass(obj, parent_module)",
+            "doc": "A dataclass for storage of class object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the class in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_class",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -350,7 +327,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_class",
                     "signature": "(self) -> 'dict'"
                 },
@@ -368,7 +345,7 @@
         {
             "type": "#class",
             "name": "ParsedFunction",
-            "doc": "ParsedFunction(obj, parent_module)",
+            "doc": "A dataclass for storage of a function object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the function in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_function",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -382,7 +359,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_function",
                     "signature": "(self) -> 'dict'"
                 },
@@ -400,7 +377,7 @@
         {
             "type": "#class",
             "name": "ParsedMethod",
-            "doc": "ParsedMethod(obj, parent_module)",
+            "doc": "A dataclass for storage of method object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the method in question which must be stored\n- parent_module: the module where the class which holds the method in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_method",
             "signature": "(obj, parent_module)",
             "methods": [
@@ -414,7 +391,7 @@
                 {
                     "type": "#method",
                     "name": "to_dict",
-                    "doc": null,
+                    "doc": "Cast the object attributes to a dictionary format",
                     "parent_module": "AthenaDocumentor.models.parsed.parsed_method",
                     "signature": "(self) -> 'dict'"
                 },
@@ -432,7 +409,7 @@
         {
             "type": "#class",
             "name": "ParsedModule",
-            "doc": "ParsedModule(obj, parent_module)",
+            "doc": "A dataclass for storage of module object components.\nDoes not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings\n\nParameters:\n- obj: the module in question which must be stored\n- parent_module: the module where the class in located in. This is a `types.ModuleType`",
             "parent_module": "AthenaDocumentor.models.parsed.parsed_module",
             "signature": "(obj, parent_module)",
             "methods": [

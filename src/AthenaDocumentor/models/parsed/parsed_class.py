@@ -19,6 +19,14 @@ from AthenaDocumentor.data.types import Types
 # ----------------------------------------------------------------------------------------------------------------------
 @dataclass(init=False, eq=False)
 class ParsedClass(Parsed):
+    """
+    A dataclass for storage of class object components.
+    Does not hold the documentation by itself, as this can often lead to memory overloads with large documentation strings
+
+    Parameters:
+    - obj: the class in question which must be stored
+    - parent_module: the module where the class in located in. This is a `types.ModuleType`
+    """
     signature: inspect.Signature|None
     methods: list[ParsedMethod]
 

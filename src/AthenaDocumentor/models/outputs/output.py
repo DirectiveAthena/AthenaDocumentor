@@ -16,6 +16,10 @@ from AthenaDocumentor.models.parsed import Parsed
 class Output(ABC):
     """
     Standardized way of outputting correctly parsed objects into string objects.
+    Used by the parser `output_...` methods to correctly form the wanted text version
+
+    The base Output class is an abstract class, which means the classes that inherit from it,
+    must implement all following methods.
     """
     # ------------------------------------------------------------------------------------------------------------------
     # - Formatting text snippets -
