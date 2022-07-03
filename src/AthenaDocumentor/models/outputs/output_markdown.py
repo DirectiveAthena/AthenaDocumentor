@@ -9,8 +9,6 @@ import inspect
 
 # Custom Packages
 from AthenaDocumentor.models.outputs.output import Output
-
-import AthenaDocumentor.functions.markdown_string_manipulations as msm
 from AthenaDocumentor.models.parsed import Parsed, ParsedMethod,ParsedClass,ParsedFunction
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -18,11 +16,11 @@ from AthenaDocumentor.models.parsed import Parsed, ParsedMethod,ParsedClass,Pars
 # ----------------------------------------------------------------------------------------------------------------------
 class OutputMarkdown(Output):
     """
-    The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to the defined format.
+    The OutputMarkdown supports the `Parser` in formatting `Parsed` objects to a Markdown format.
     """
     indent:int = 4
 
-    missing_documentation:str = "*<span style=color:red>-!- Missing documentation -!-</span>*"
+    missing_documentation:str = "*`-!- Missing documentation -!-`*"
     default_footer:str = "\n\n---\n\n"
 
     # ----------------------------------------------------------------------------------------------------------------------
@@ -43,7 +41,7 @@ class OutputMarkdown(Output):
         return parsed_object.type.value
     @classmethod
     def format_module_name(cls, parsed_object:Parsed) -> str:
-        return f"<small>{parsed_object.parent_module.__name__}.</small>"
+        return f"{parsed_object.parent_module.__name__}."
     @classmethod
     def format_object_name(cls, parsed_object:Parsed) -> str:
         return f"**{parsed_object.obj_name}**"
@@ -75,11 +73,9 @@ class OutputMarkdown(Output):
     @classmethod
     def structure_class(cls,parsed_object: ParsedClass) -> str:
         header = cls.format_header(parsed_object)
-        methods:str = msm.remove_empty_prefix(
-            "\n\n".join(
-                cls.structure_method(method)
-                for method in parsed_object.methods
-            )
+        methods:str = "\n\n".join(
+            cls.structure_method(method)
+            for method in parsed_object.methods
         )
         footer = cls.format_footer(parsed_object)
         return f"{header}\n\n{cls.format_documentation(parsed_object)}\n\n{methods}{footer}"
@@ -88,5 +84,5 @@ class OutputMarkdown(Output):
     def structure_method(cls, parsed_object: ParsedFunction|ParsedMethod) -> str:
         object_name:str = cls.format_object_name(parsed_object)
         signature:str = cls.format_signature(parsed_object)
-        documentation = cls.format_documentation(parsed_object).replace("\n\n", "\n")
-        return f'$\qquad${object_name}{signature}\n\n<span class="parent_indent">{documentation}</span>'
+        documentation = cls.format_documentation(parsed_object)
+        return f'{object_name}{signature}\n\n{documentation}'

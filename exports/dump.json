@@ -277,29 +277,6 @@
             ]
         }
     ],
-    "AthenaDocumentor.functions.markdown_string_manipulations": [
-        {
-            "type": "#func",
-            "name": "indent_all_lines",
-            "doc": "Indents all lines in a string with a defined amount of indentation\n\nParameters:\n- text : str -> input text\n- indent : int -> amount of whitespaces that has to be added before everything else",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str', indent: 'int') -> 'str'"
-        },
-        {
-            "type": "#func",
-            "name": "quote_all_lines",
-            "doc": "Places a quote prefix in front of all lines in a string\n\nParameters:\n- text : str -> input text",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str') -> 'str'"
-        },
-        {
-            "type": "#func",
-            "name": "remove_empty_prefix",
-            "doc": "Removes any double spaces (\"  \")\n\nParameters:\n- text : str -> input text",
-            "parent_module": "AthenaDocumentor.functions.markdown_string_manipulations",
-            "signature": "(text: 'str') -> 'str'"
-        }
-    ],
     "AthenaDocumentor.models.parsed.parsed": [
         {
             "type": "#class",
