@@ -161,7 +161,7 @@
         {
             "type": "#class",
             "name": "Parser",
-            "doc": "Object to control the correct handling of parsing through a Python package",
+            "doc": "Object to control the correct handling of parsing through a Python package\n\nParameters:\n- root_module: `types.ModuleType`\n- markdown_structure: `AthenaDocumentor.OutputMarkdown`\n- parse_items_with_underscore: `bool` -> Boolean option whether to implement single underscored objects in parsing",
             "parent_module": "AthenaDocumentor",
             "signature": "(*, root_module: 'types.ModuleType', markdown_structure: 'type[Output]' = <class 'AthenaDocumentor.models.outputs.output_markdown.OutputMarkdown'>, parse_items_with_underscore: 'bool' = True) -> None",
             "methods": [
@@ -189,14 +189,14 @@
                 {
                     "type": "#method",
                     "name": "output_to_dict",
-                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.",
+                    "doc": "Output the 'parsed_items' dictionary as is, or with custom parameters.\n\nParameters:\n- flat: bool -> Will return the `self.parsed_items` as is, calling the `to_dict()` method on all Parsed objects",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, *, flat: 'bool' = False) -> 'dict[str:list[dict]]'"
                 },
                 {
                     "type": "#method",
                     "name": "output_to_json_file",
-                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`",
+                    "doc": "Output the 'parsed_items' dictionary to a json file.\nThis method calls the `self.output_to_dict` method with the 'flat' parameter set to `True`\n\nParameters:\n- filepath -> The file to write to",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, filepath: 'str')"
                 },
@@ -217,7 +217,7 @@
                 {
                     "type": "#method",
                     "name": "output_to_markdown_file",
-                    "doc": "Output the 'parsed_items' to a structured MarkDown file.",
+                    "doc": "Output the 'parsed_items' to a structured MarkDown file.\n\nParameters:\n- filepath -> The file to write to",
                     "parent_module": "AthenaDocumentor.models.parser",
                     "signature": "(self, *filepath: 'str')"
                 },
